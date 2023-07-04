@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:5173/" , "https://xxx.com"})
+@CrossOrigin(origins = {"http://localhost:5173/", "http://localhost:5174/" , "https://xxx.com"})
 public class MovieController {
     // METHOD
     // GET
@@ -30,6 +30,13 @@ public class MovieController {
         // Expected 1 arguments but found 0
         Movie movies =  movieService.postMovie(movie);
         return ResponseEntity.ok(movies);
+    }
+
+    @PostMapping("movies")
+    public ResponseEntity postMovies(@RequestBody List<Movie> movies){
+        // Expected 1 arguments but found 0
+        List<Movie> newMovies =  movieService.postMovies(movies);
+        return ResponseEntity.ok(newMovies);
     }
 
     @GetMapping("/movie/{movieId}")
