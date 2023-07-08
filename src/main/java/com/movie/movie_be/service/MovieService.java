@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
@@ -46,7 +48,7 @@ public class MovieService {
 
     public void addData(){
         Movie movie = movieRepository.findMovieById(1);
-        List<Information> actors = actorRepository.findAll();
+        Set<Information> actors = actorRepository.findAll().stream().collect(Collectors.toSet());
         movie.setActors(actors);
         movieRepository.save(movie);
     }
